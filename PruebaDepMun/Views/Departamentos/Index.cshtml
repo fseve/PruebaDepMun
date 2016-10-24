@@ -1,0 +1,68 @@
+﻿@model IEnumerable<PruebaDepMun.DAL.Departamentos>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
+    <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+
+</head>
+<body>
+
+    <div class="container">
+
+        <p>
+            @Html.ActionLink("Nuevo", "Create")
+        </p>
+        <table id="example" class="display">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        @*@Html.DisplayNameFor(model => model.nombre)*@
+                        Nombre Departamento
+                    </th>
+                    <th class="text-center">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombre)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
